@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     // reference to the camera
     Camera cam;
 
-
     private void Start()
     {
         cam = Camera.main;
@@ -24,6 +23,16 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             unit.FireWeapon();
+        }
+
+        // 1 - right click
+        if(Input.GetMouseButtonDown(1))
+        {
+            unit.StartAiming();
+        }
+        else if(Input.GetMouseButtonUp(1))
+        {
+            unit.StopAiming();
         }
     }
 

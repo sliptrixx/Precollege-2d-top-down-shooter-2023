@@ -7,8 +7,29 @@ public class Unit : MonoBehaviour
     [Tooltip("The speed at which the unit moves")]
     [SerializeField] float Speed;
 
-    [SerializeField] GameObject ProjectilePrefab;
+    [Header("References")]
+    [SerializeField] GameObject HandRef;
 
+    /// <summary>
+    /// Stores a reference to the current weapon that the unit is holding
+    /// </summary>
+    [SerializeField] Weapon currentWeapon;
+
+    /// <summary>
+    /// Is the unit currently aiming with the weapon
+    /// </summary>
+    bool isAiming;
+
+    private void Start()
+    {
+        Pickup(currentWeapon);
+        StopAiming();
+    }
+
+    /// <summary>
+    /// Move the unit in the given direction based on unit's speed
+    /// </summary>
+    /// <param name="direction">The direction in which the unit must move</param>
     public void Move(Vector2 direction)
     {
         direction = direction.normalized;
@@ -27,15 +48,34 @@ public class Unit : MonoBehaviour
 
     public void FireWeapon()
     {
-        var spawnedProjectile = Instantiate(ProjectilePrefab);
-        spawnedProjectile.transform.position = transform.position;
-        spawnedProjectile.transform.up = transform.up;
+        if(!isAiming) { return; }
 
-        // get the projectile component and set this unit as the one who spawned the projectile
-        var projectileComponent = spawnedProjectile.GetComponent<Projectile>();
-        if(projectileComponent != null)
+        currentWeapon.Fire();
+    }
+
+    public void StartAiming()
+    {
+        isAiming = true;
+        HandRef.SetActive(true);
+    }
+
+    public void StopAiming()
+    {
+        isAiming = false;
+        HandRef.SetActive(false);
+    }
+
+    public void Pickup(Weapon weapon)
+    {
+        // no weapon was given, and can't pick it up
+        if(weapon == null) 
+        { 
+            return; 
+        }
+
+        if(weapon.RequestPickup(this))
         {
-            projectileComponent.SpawnedBy = this;
+            currentWeapon = weapon;
         }
     }
 }
