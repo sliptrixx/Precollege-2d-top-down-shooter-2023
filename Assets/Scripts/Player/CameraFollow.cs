@@ -16,6 +16,9 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
+        // nothing to follow, don't proceed
+        if(Target == null) { return; }
+
         Vector3 expectedPosition = Target.position;
         expectedPosition.z = startCameraPosition.z;
 

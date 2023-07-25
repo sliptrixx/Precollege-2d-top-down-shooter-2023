@@ -20,6 +20,12 @@ public class Health : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, MaxHealth);
+
+        // when current health is 0, destroy the object attached to the health component
+        if(currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void DoHeal(int heal)
