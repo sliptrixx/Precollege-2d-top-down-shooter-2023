@@ -12,6 +12,10 @@ public class CameraFollow : MonoBehaviour
     private void Start()
     {
         startCameraPosition = transform.position;
+        
+        var expected_position = Target.position;
+        expected_position.z = transform.position.z;
+        transform.position = expected_position;
     }
 
     private void LateUpdate()

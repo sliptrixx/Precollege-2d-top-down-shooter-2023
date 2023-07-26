@@ -8,7 +8,7 @@ public class SaveManager : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] ScoreManager scoreManager;
 
-    private void Start()
+    private void Awake()
     {
         string json_string = File.ReadAllText($"{Application.persistentDataPath}/savedata.json");
         var data = JsonUtility.FromJson<SaveData>(json_string);
