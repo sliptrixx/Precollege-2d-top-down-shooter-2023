@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
     // reference to the camera
     Camera cam;
 
-    [SerializeField] GameObject RespawnMenu;
-
     private void Start()
     {
         cam = Camera.main;
@@ -41,14 +39,6 @@ public class PlayerController : MonoBehaviour
         {
             var health = GetComponent<Health>();
             health.DoDamage(5);
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if(RespawnMenu)
-        {
-            RespawnMenu.SetActive(true);
         }
     }
 

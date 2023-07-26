@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] int MaxHealth = 10;
+    [field: SerializeField] public int MaxHealth { get; private set; } = 10;
+
+    [SerializeField] UnityEvent<Health> OnDamageEvent;
+
+    [SerializeField] UnityEvent<Health> OnDeathEvent;
     
     /// <summary>
     /// the current health of the object
     /// </summary>
-    int currentHealth;
+    public int currentHealth { get; private set; }
 
     private void Start()
     {
@@ -24,13 +29,20 @@ public class Health : MonoBehaviour
         // when current health is 0, destroy the object attached to the health component
         if(currentHealth <= 0)
         {
-            Destroy(gameObject);
+            OnDeathEvent.Invoke(this);
         }
+
+        OnDamageEvent.Invoke(this);
     }
 
     public void DoHeal(int heal)
     {
         // fancy way of healing
         DoDamage(-heal);
-    }    
+    }
+    
+    public void DestroyGameobject()
+    {
+        Destroy(gameObject);
+    }
 }
