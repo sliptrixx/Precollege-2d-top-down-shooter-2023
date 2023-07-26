@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Sprites;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -13,7 +14,7 @@ public class Unit : MonoBehaviour
     /// <summary>
     /// Stores a reference to the current weapon that the unit is holding
     /// </summary>
-    [SerializeField] Weapon currentWeapon;
+    [field: SerializeField] public Weapon currentWeapon { get; protected set; }
 
     /// <summary>
     /// Is the unit currently aiming with the weapon
@@ -56,13 +57,15 @@ public class Unit : MonoBehaviour
     public void StartAiming()
     {
         isAiming = true;
-        HandRef.SetActive(true);
+        ChangeSpriteActive(HandRef.GetComponent<SpriteRenderer>(), true);
+        //HandRef.SetActive(true);
     }
 
     public void StopAiming()
     {
         isAiming = false;
-        HandRef.SetActive(false);
+        ChangeSpriteActive(HandRef.GetComponent<SpriteRenderer>(), false);
+        //HandRef.SetActive(false);
     }
 
     public void Pickup(Weapon weapon)
@@ -76,6 +79,23 @@ public class Unit : MonoBehaviour
         if(weapon.RequestPickup(this))
         {
             currentWeapon = weapon;
+        }
+    }
+
+    void ChangeSpriteActive(SpriteRenderer sprite, bool isActive)
+    {
+        // ignore if null or an invalid object is passed
+        if(sprite == null) { return; }
+
+        // set the active state
+        sprite.enabled = isActive;
+
+        // set the active state on all children, recursively
+        var children = sprite.GetComponentsInChildren<SpriteRenderer>(includeInactive: true);
+        foreach(var child in children)
+        {
+            child.enabled = isActive;
+            //ChangeSpriteActive(child, isActive);
         }
     }
 }
