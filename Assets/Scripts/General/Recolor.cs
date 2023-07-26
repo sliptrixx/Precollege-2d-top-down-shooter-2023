@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class UnitColor : MonoBehaviour
+public class Recolor : MonoBehaviour
 {
-    [SerializeField] Color PrimaryColor;
-    [SerializeField] Color FaceTone;
-    [SerializeField] Color HairColor;
+    [SerializeField] Color RedChannel;
+    [SerializeField] Color BlueChannel;
+    [SerializeField] Color GreenChannel;
     
     // Reference to the attached sprite renderer
     SpriteRenderer spriteRenderer = null;
@@ -31,8 +31,8 @@ public class UnitColor : MonoBehaviour
 
         // update the values in the materials
         var material = spriteRenderer.material;
-        material.SetColor("_PrimaryColor", PrimaryColor);
-        material.SetColor("_FacialTone", FaceTone);
-        material.SetColor("_HairColor", HairColor);
+        material.SetColor("_Red", RedChannel);
+        material.SetColor("_Blue", BlueChannel);
+        material.SetColor("_Green", GreenChannel);
     }
 }

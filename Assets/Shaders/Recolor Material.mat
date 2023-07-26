@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unit Material
+  m_Name: Recolor Material
   m_Shader: {fileID: -6465566751694194690, guid: f6240fa0942bcee4a86e868014666395, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
