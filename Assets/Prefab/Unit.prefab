@@ -375,8 +375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f2937384f966643ae299ed4e0eb1e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RedChannel: {r: 0.29411766, g: 0.4509804, b: 0.34509805, a: 1}
-  BlueChannel: {r: 0.6784314, g: 0.5529412, b: 0.4117647, a: 1}
+  RedChannel: {r: 0.4509804, g: 0.42920837, b: 0.29411766, a: 1}
+  BlueChannel: {r: 0.4117647, g: 0.66036487, b: 0.6784314, a: 1}
   GreenChannel: {r: 0.42352942, g: 0.28235295, b: 0.24705882, a: 1}
 --- !u!114 &6301399791622195020
 MonoBehaviour:
@@ -532,8 +532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f2937384f966643ae299ed4e0eb1e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RedChannel: {r: 0.29411766, g: 0.4509804, b: 0.34509805, a: 1}
-  BlueChannel: {r: 0.6784314, g: 0.5529412, b: 0.4117647, a: 1}
+  RedChannel: {r: 0.4509804, g: 0.42920837, b: 0.29411766, a: 1}
+  BlueChannel: {r: 0.4117647, g: 0.66036487, b: 0.6784314, a: 1}
   GreenChannel: {r: 0.42352942, g: 0.28235295, b: 0.24705882, a: 1}
 --- !u!1 &7589235518781941806
 GameObject:
