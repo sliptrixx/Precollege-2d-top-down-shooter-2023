@@ -27,7 +27,13 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == SpawnedBy.gameObject)
+        if (SpawnedBy && collision.gameObject == SpawnedBy.gameObject)
+        {
+            return;
+        }
+
+        var projectile = collision.GetComponent<Projectile>();
+        if(projectile)
         {
             return;
         }
